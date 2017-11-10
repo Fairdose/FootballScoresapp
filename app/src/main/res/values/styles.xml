@@ -1,0 +1,7 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="PracticeSet2" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">#004D40</item>
+        <item name="colorButtonNormal">#B2DFDB</item>
+    </style>
+</resources>
