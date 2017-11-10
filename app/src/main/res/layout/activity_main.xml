@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00695C"
+    android:background="@drawable/grass_field"
     tools:context="com.example.android.footballscoresapp.MainActivity">
 
     <TextView
@@ -12,9 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:text="Score"
         android:textColor="#EEE"
-        android:textSize="40sp" />
+        android:textSize="55sp" />
 
     <LinearLayout
         android:id="@+id/score_wrapper"
@@ -26,26 +27,35 @@
 
         <TextView
             android:id="@+id/team_a_score"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="5dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:text="0"
+            android:textAlignment="center"
             android:textColor="#EEE"
             android:textSize="80sp" />
 
         <TextView
+            android:layout_weight="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="55sp"
-            android:layout_marginRight="55sp"
+            android:layout_gravity="center_horizontal"
             android:text="-"
+            android:textAlignment="center"
             android:textColor="#EEE"
             android:textSize="80sp" />
 
         <TextView
             android:id="@+id/team_b_score"
-            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_width="5dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
             android:text="0"
+            android:textAlignment="center"
             android:textColor="#EEE"
             android:textSize="80sp" />
 
