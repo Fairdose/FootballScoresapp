@@ -79,7 +79,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
-                android:text="DC Vertigo"
+                android:text="Team Foulers"
                 android:textColor="#EEE"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -131,7 +131,7 @@
                 android:layout_gravity="center_horizontal"
                 android:paddingBottom="2dp"
                 android:paddingTop="2dp"
-                android:text="Marvel Universe"
+                android:text="Team Goalers"
                 android:textColor="#EEE"
                 android:textSize="18sp"
                 android:textStyle="bold" />
