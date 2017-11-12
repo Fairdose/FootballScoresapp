@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Football Scoresapp</string>
+    <string name="score">Score</string>
+    <string name="team_foulers">Team Foulers</string>
+    <string name="fouls_0">Fouls : 0</string>
+    <string name="goal">GOAL!</string>
+    <string name="foul">Foul</string>
+    <string name="team_goalers">Team Goalers</string>
+    <string name="reset">Reset</string>
+    <string name="default_score">0</string>
 </resources>
