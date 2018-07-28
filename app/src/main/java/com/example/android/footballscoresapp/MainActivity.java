@@ -2,55 +2,102 @@ package com.example.android.footballscoresapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
+
+    int teamAScore;
+    int teamAFoul;
+    int teamBScore;
+    int teamBFoul;
+
+    TextView scoreView1;
+    TextView scoreView2;
+    TextView scoreView3;
+    TextView scoreView4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+        scoreView1 = (TextView) findViewById(R.id.team_a_score);
+        scoreView2 = (TextView) findViewById(R.id.team_b_score);
+        scoreView3 = (TextView) findViewById(R.id.team_a_foul_text);
+        scoreView4 = (TextView) findViewById(R.id.team_b_foul_text);
+
+        if (savedInstanceState != null){
+
+            ArrayList<Integer> statA = savedInstanceState.getIntegerArrayList("TeamAStats");
+            ArrayList<Integer> statB = savedInstanceState.getIntegerArrayList("TeamBStats");
+
+            scoreView1.setText(String.valueOf(statA.get(0)));
+            scoreView2.setText(String.valueOf(statB.get(0)));
+            scoreView3.setText(String.valueOf("Fouls : " + statA.get(1)));
+            scoreView4.setText(String.valueOf("Fouls : " + statB.get(1)));
+
+            Log.i("Saved i", "Not null");
+        } else {
+            Log.i("Save i", "Null");
+        }
     }
 
-    int teamAScore = 0;
-    int teamAFoul = 0;
-    int teamBScore = 0;
-    int teamBFoul = 0;
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        ArrayList<Integer> statA = savedInstanceState.getIntegerArrayList("TeamAStats");
+        ArrayList<Integer> statB = savedInstanceState.getIntegerArrayList("TeamBStats");
+
+        teamAScore = statA.get(0);
+        teamBScore = statB.get(0);
+        teamAFoul = statA.get(1);
+        teamBFoul = statB.get(1);
+
+        scoreView1.setText(String.valueOf(statA.get(0)));
+        scoreView2.setText(String.valueOf(statB.get(0)));
+        scoreView3.setText(String.valueOf("Fouls : " + statA.get(1)));
+        scoreView4.setText(String.valueOf("Fouls : " + statB.get(1)));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        ArrayList<Integer> teamAStats = new ArrayList<Integer>(Arrays.asList(teamAScore,teamAFoul));
+        ArrayList<Integer> teamBStats = new ArrayList<Integer>(Arrays.asList(teamBScore,teamBFoul));
+        outState.putIntegerArrayList("TeamAStats",  teamAStats);
+        outState.putIntegerArrayList("TeamBStats",  teamBStats);
+
+        super.onSaveInstanceState(outState);
+    }
 
     public void updateScoreA (int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_score);
-        scoreView.setText(String.valueOf(score));
+        scoreView1.setText(String.valueOf(score));
     }
 
     public void updateScoreB (int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
-        scoreView.setText(String.valueOf(score));
+        scoreView2.setText(String.valueOf(score));
     }
 
     public void updateFoulA (String foul) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_foul_text);
-        scoreView.setText(String.valueOf(foul));
+        scoreView3.setText(String.valueOf(foul));
     }
 
     public void updateFoulB (String foul) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_foul_text);
-        scoreView.setText(String.valueOf(foul));
+        scoreView4.setText(String.valueOf(foul));
     }
 
     public void resetGame (View view) {
         teamAScore = teamAFoul = teamBScore = teamBFoul = 0;
-
-        TextView scoreView1 = (TextView) findViewById(R.id.team_a_score);
         scoreView1.setText(String.valueOf(0));
-
-        TextView scoreView2 = (TextView) findViewById(R.id.team_b_score);
         scoreView2.setText(String.valueOf(0));
-
-        TextView scoreView3 = (TextView) findViewById(R.id.team_a_foul_text);
         scoreView3.setText(String.valueOf("Fouls : 0"));
-
-        TextView scoreView4 = (TextView) findViewById(R.id.team_b_foul_text);
         scoreView4.setText(String.valueOf("Fouls : 0"));
     }
 
@@ -73,6 +120,5 @@ public class MainActivity extends AppCompatActivity {
         teamBFoul = teamBFoul + 1;
         updateFoulB("Fouls : " + teamBFoul);
     }
-
-
 }
+
